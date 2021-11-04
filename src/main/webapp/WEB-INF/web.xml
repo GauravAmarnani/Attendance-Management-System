@@ -3,5 +3,104 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+	
+	<display-name>Archetype Created Web Application</display-name>
+	
+	<!-- HTTP Status Error Codes. -->
+	
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error/400</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>401</error-code>
+		<location>/error/401</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error/403</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error/405</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>407</error-code>
+		<location>/error/407</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>408</error-code>
+		<location>/error/408</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>409</error-code>
+		<location>/error/409</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>413</error-code>
+		<location>/error/413</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>414</error-code>
+		<location>/error/414</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>415</error-code>
+		<location>/error/415</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>429</error-code>
+		<location>/error/429</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>501</error-code>
+		<location>/error/501</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>502</error-code>
+		<location>/error/502</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>503</error-code>
+		<location>/error/503</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>504</error-code>
+		<location>/error/504</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>507</error-code>
+		<location>/error/507</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>508</error-code>
+		<location>/error/508</location>
+	</error-page>
+		
 </web-app>

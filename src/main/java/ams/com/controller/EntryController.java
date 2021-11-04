@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class EntryController {
 	
 	/**
-	 * This is the Index Page link Mapping method.
+	 * This is the Index Page Link Mapping method.
 	 * 
 	 * @return home-page.jsp 
 	 */
@@ -40,5 +40,4 @@ public class EntryController {
 	public String getHomePage() {
 		return "home-page";
 	}
-	
 }

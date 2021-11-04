@@ -16,23 +16,46 @@
 
 package ams.com.configuration;
 
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * SecurityConfiguration Class helps us to manage the various security features provided by 
- * the Spring Framework.
+ * SecurityConfiguration Class helps us to manage the various security features
+ * provided by the Spring Framework.
  * 
- * In this Class we can Authenticate and Authorize the Users.
- * Set PasswordEncoders.
- * Set Custom Login and Logout Pages.
+ * In this Class we can Authenticate and Authorize the Users. Set
+ * PasswordEncoders. Set Custom Login and Logout Pages.
  * 
  * @author GauravAmarnani
  * @version 1.0
  */
 
-@EnableWebSecurity(debug = true)  
+@EnableWebSecurity(debug = true)
 //Not adding @Configuration because @EnableWebSecurity internally calls it anyways.
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+	/**
+	 * @param {@link org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder} 
+	 * object helps us to create the User Authentication.
+	 * 
+	 * It helps us create various Users along with Password and Roles.
+	 * We can also set PasswordEncoder in this method using the AuthenticationManagerBuilder object.
+	 */
 	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception { }
+
+	/**
+	 * @param {@link org.springframework.security.config.annotation.web.builders.HttpSecurity} object helps 
+	 * us to set Authority rights over Web Pages.
+	 * 
+	 * It helps us set Authority for each single page or multiple pages.
+	 * We can also use it to set Custom Login and Logout Page.
+	 * We can disable CSRF Protection if we want with help of HttpSecurity Object.
+	 */
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception { }
 }

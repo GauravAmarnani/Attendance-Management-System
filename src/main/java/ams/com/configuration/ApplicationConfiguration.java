@@ -22,6 +22,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import ams.com.utility.HttpStatusCodesUtility;
+
 /**
  * ApplicationConfiguration Class is the Spring Initialization Class which replaces the xml file.
  * This is known as the Configuration Class of our application and performs roles like creating beans, 
@@ -37,9 +39,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class ApplicationConfiguration {
 	
 	/**
-	 * @return The Object of InternalResourceViewResolver with already set prefix and suffix which 
-	 * will help the Spring Application to locate the Java Server Pages more efficiently and makes 
-	 * it much more easier for us to call them.
+	 * @return The Object of {@link org.springframework.web.servlet.view.InternalResourceViewResolver} with already 
+	 * set prefix and suffix which will help the Spring Application to locate the Java Server Pages more efficiently 
+	 * and makes it much more easier for us to call them.
 	 */
 	
 	@Bean
@@ -48,5 +50,15 @@ public class ApplicationConfiguration {
 		internalResourceViewResolver.setPrefix("/WEB-INF/views/");
 		internalResourceViewResolver.setSuffix(".jsp");
 		return internalResourceViewResolver;
+	}
+	
+	/**
+	 * @return {@link ams.com.utility.HttpStatusCodesUtility} object which will be used 
+	 * by {@link ams.com.service.HttpStatusService}
+	 */
+	
+	@Bean
+	public HttpStatusCodesUtility getHttpStatusCodes() {
+		return new HttpStatusCodesUtility();
 	}
 }

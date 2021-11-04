@@ -16,13 +16,15 @@
 
 package ams.com.configuration;
 
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
  * ApplicationInitializer Class essentially replaces the web.xml file here.
  * 
- * It has many functionalities such as Initializing the Application by setting the Configuration Class, 
- * setting DispatcherServlet Mappings along with many other things like Custom Registration.
+ * It has many functionalities such as Initializing the Application by setting
+ * the Configuration Class, setting DispatcherServlet Mappings along with many
+ * other things like Custom Registration.
  * 
  * @author Gaurav Amarnani
  * @version 1.0
