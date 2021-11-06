@@ -16,10 +16,14 @@
 
 package ams.com.configuration;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * SecurityConfiguration Class helps us to manage the various security features
@@ -37,25 +41,56 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	/**
-	 * @param {@link org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder} 
-	 * object helps us to create the User Authentication.
-	 * 
-	 * It helps us create various Users along with Password and Roles.
-	 * We can also set PasswordEncoder in this method using the AuthenticationManagerBuilder object.
+	 * Used by
+	 * {@link org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder}
+	 * to set this as DataSource for JDBC Authentication.
 	 */
-	
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception { }
+
+	@Autowired
+	private DataSource dataSource;
 
 	/**
-	 * @param {@link org.springframework.security.config.annotation.web.builders.HttpSecurity} object helps 
-	 * us to set Authority rights over Web Pages.
+	 * Used by
+	 * {@link org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder}
+	 * to set this as default PasswordEncoder.
 	 * 
-	 * It helps us set Authority for each single page or multiple pages.
-	 * We can also use it to set Custom Login and Logout Page.
-	 * We can disable CSRF Protection if we want with help of HttpSecurity Object.
+	 * @see org.springframework.security.crypto.password.PasswordEncoder.
 	 */
-	
+
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	/**
+	 * It helps us create various Users along with Password and Roles. We can also
+	 * set PasswordEncoder in this method using this object.
+	 * 
+	 * @param {@link org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder}
+	 *               object helps us to create the User Authentication.
+	 */
+
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { }
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.jdbcAuthentication()
+			.dataSource(dataSource)
+			.passwordEncoder(bCryptPasswordEncoder);
+	}
+
+	/**
+	 * It helps us set Authority for each single page or multiple pages. We can also
+	 * use it to set Custom Login and Logout Page. We can disable CSRF Protection if
+	 * we want with help of HttpSecurity Object.
+	 * 
+	 * @param {@link org.springframework.security.config.annotation.web.builders.HttpSecurity}
+	 *               object helps us to set Authority rights over Web Pages.
+	 */
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+			.antMatchers("/", "/error/").permitAll()
+			.antMatchers("/hod", "/hod/*").hasAuthority("HOD")
+			.antMatchers("/teacher", "/teacher/*").hasAuthority("TEACHER")
+			.and().formLogin()
+			.and().httpBasic();
+	}
 }

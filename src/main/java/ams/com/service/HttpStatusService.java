@@ -19,14 +19,14 @@ package ams.com.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ams.com.dto.HttpStatusErrorMessageDTO;
 import ams.com.utility.HttpStatusCodesUtility;
-import ams.com.utility.HttpStatusErrorMessageUtility;
 
 /**
  * HttpStatusService provides service to {@link ams.com.controller.HttpStatusController} to handle HTTP Errors.
  * 
  * It designates an appropriate error message for the provided HTTP Status Code with help of
- * {@link ams.com.utility.HttpStatusCodesUtility} and {@link ams.com.utility.HttpStatusErrorMessageUtility}.
+ * {@link ams.com.utility.HttpStatusCodesUtility} and {@link ams.com.dto.HttpStatusErrorMessageDTO}.
  * 
  * @author GauravAmarnani
  * @version 1.0
@@ -49,11 +49,11 @@ public class HttpStatusService {
 	 * This methods uses the {@link ams.com.utility.HttpStatusCodesUtility#generateErrorMessage(Integer)} method 
 	 * to designate an appropriate message for the provided HTTP Status Code. 
 	 * 
-	 * @return {@link ams.com.utility.HttpStatusErrorMessageUtility} object which essentially contains the 
+	 * @return {@link ams.com.dto.HttpStatusErrorMessageDTO} object which essentially contains the 
 	 * information about the code like it's title and description.
 	 */
 	
-	public HttpStatusErrorMessageUtility getHttpStatusErrorMessageUtility(Integer code) {
+	public HttpStatusErrorMessageDTO getHttpStatusErrorMessageUtility(Integer code) {
 		return httpStatusCodesUtility.getHttpStatusErrorMessage(code);
 	}
 }

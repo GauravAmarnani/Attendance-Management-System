@@ -14,17 +14,37 @@
  * limitations under the License.
  */
 
-package ams.com.configuration;
+package ams.com.service;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ams.com.dao.StaffDAOImpl;
 
 /**
- * SecurityInitializer Class starts the Security Filters and activates the SecurityConfiguration.
+ * This class helps the {@link ams.com.controller.EntryController} with the login related stuff.
  * 
  * @author GauravAmarnani
  * @version 1.0
  */
 
-public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer { 
-
+@Service
+public class LoginService {
+	
+	/**
+	 * Makes connection to database.
+	 */
+	
+	@Autowired
+	private StaffDAOImpl staffDAOImpl;
+	
+	/**
+	 * @param username of user.
+	 * @return true if user is HOD, false if not.
+	 */
+	
+	public boolean isUserHOD(String username) {
+		String authority = staffDAOImpl.getAuthorityByUsername(username);
+		return (authority.equals("HOD")) ? true : false;
+	}
 }

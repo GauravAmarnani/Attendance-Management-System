@@ -1,5 +1,6 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +9,10 @@
 </head>
 <body>
 	<h1>Hello, Unregistered User!</h1>
-	<form action="/login">
-		<input type="submit" value="Login"/>
-	</form>
-	<a href="#">View Attendance.</a>
+	<form:form action="#" method="GET" modelAttribute="path">
+		<form:button value="/viewAttendance">View Attendance</form:button>
+		<br/> <br/>
+		<a href="${path}/login">Login</a>
+	</form:form>
 </body>
 </html>

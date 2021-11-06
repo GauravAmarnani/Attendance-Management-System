@@ -14,17 +14,25 @@
  * limitations under the License.
  */
 
-package ams.com.configuration;
+package ams.com.utility;
 
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+import ams.com.annotations.Utility;
 
 /**
- * SecurityInitializer Class starts the Security Filters and activates the SecurityConfiguration.
+ * This class contains SQL Queries which are used by DAO Classes after
+ * connecting to database.
  * 
  * @author GauravAmarnani
  * @version 1.0
  */
 
-public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer { 
+@Utility
+public class SQLUtility {
 
+	/**
+	 * This variable contains query which will return the authority for a given
+	 * username.
+	 */
+
+	public static final String AUTHORITY_BY_USERNAME = "SELECT authority FROM ams_staff.authorities WHERE username = ?";
 }

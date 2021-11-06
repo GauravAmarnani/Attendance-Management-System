@@ -16,7 +16,6 @@
 
 package ams.com.configuration;
 
-
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**

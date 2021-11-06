@@ -19,14 +19,15 @@ package ams.com.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import ams.com.service.HttpStatusService;
 
 /**
- * HttpStatusController class is a Controller which deals with the incoming HTTP Status Code Errors.
- * It handles all the error caught by the web.xml file with the help of {@link ams.com.service.HttpStatusService}.
+ * HttpStatusController class is a Controller which deals with the incoming HTTP
+ * Status Code Errors. It handles all the error caught by the web.xml file with
+ * the help of {@link ams.com.service.HttpStatusService}.
  * 
  * @author GauravAmarnani
  * @version 1.0
@@ -34,27 +35,27 @@ import ams.com.service.HttpStatusService;
 
 @Controller
 public class HttpStatusController {
-	
+
 	/**
-	 * {@link ams.com.service.HttpStatusService} is the Service class which helps the Controller to deal with 
-	 * HTTP Status Errors.
+	 * {@link ams.com.service.HttpStatusService} is the Service class which helps
+	 * the Controller to deal with HTTP Status Errors.
 	 */
-	
+
 	@Autowired
 	private HttpStatusService httpStatusService;
-	
+
 	/**
+	 * This method handles the error request and designates an appropriate error
+	 * message for user with help of {@link ams.com.service.HttpStatusService} class
+	 * and sets the attribute of the model to be read in JSP.
 	 * 
-	 * @param HTTP Status Code
+	 * @param HTTP  Status Code
 	 * @param model for JSP
-	 * 
-	 * This method handles the error request and designates an appropriate error message for user with help
-	 * of {@link ams.com.service.HttpStatusService} class and sets the attribute of the model to be read in JSP.
 	 * 
 	 * @return http-error-page.jsp
 	 */
-	
-	@GetMapping("/error/{code}")
+
+	@RequestMapping("/error/{code}")
 	public String httpError(@PathVariable("code") Integer code, Model model) {
 		model.addAttribute("message", httpStatusService.getHttpStatusErrorMessageUtility(code));
 		return "http-error-page";

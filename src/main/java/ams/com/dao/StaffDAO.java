@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-package ams.com.configuration;
-
-import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
+package ams.com.dao;
 
 /**
- * SecurityInitializer Class starts the Security Filters and activates the SecurityConfiguration.
+ * This Interface provides a structure for Staff Members along with all the necessary methods.
  * 
  * @author GauravAmarnani
  * @version 1.0
  */
 
-public class SecurityInitializer extends AbstractSecurityWebApplicationInitializer { 
-
+public interface StaffDAO {
+	
+	/**
+	 * This method can only be called when a user has logged in already.
+	 * 
+	 * @param username
+	 * @return authority of that username
+	 */
+	
+	String getAuthorityByUsername(String username);
 }
